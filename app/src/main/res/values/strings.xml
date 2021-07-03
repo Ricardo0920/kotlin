@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">KotlinExersice</string>
+    <string name="show_id">view id: %d</string>
+</resources>
