@@ -1,7 +1,9 @@
 package com.example.kotlinexersice
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -13,6 +15,7 @@ open class MainActivity : AppCompatActivity(), View.OnClickListener {
     //      👆 表示延时初始化
     private lateinit var mTextView: TextView
     private lateinit var mTvDo: TextView
+    private lateinit var mBtn: Button
     private val mUser = User.A.user
     private val mSequence: Sequence<Int> = sequenceOf(21, 40, 11, 33, 78)
     private var result: Sequence<Int>? = null
@@ -23,11 +26,13 @@ open class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTv = findViewById(R.id.tv)
         mTextView = findViewById(R.id.textView)
         mTvDo = findViewById(R.id.tv_do)
+        mBtn = findViewById(R.id.button)
         showViewId(mTv)
         mTextView.text = mUser.name
         mTextView.setOnClickListener(this)
         mTv.setOnClickListener(this)
         mTvDo.setOnClickListener(this)
+        mBtn.setOnClickListener(this)
 
         result = mSequence.map { it }.filter { it % 3 == 0 }
     }
@@ -57,6 +62,9 @@ open class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val sb = StringBuilder()
                 result?.forEach { sb.append(it).append(",") }
                 mTvDo.text = sb.toString()
+            }
+            mBtn -> {
+                startActivity(Intent(MainActivity@this, MainActivity2::class.java))
             }
         }
     }
